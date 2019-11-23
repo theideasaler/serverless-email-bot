@@ -1,0 +1,19 @@
+service: serverless-email-bot
+provider:
+  name: aws
+  runtime: nodejs10.x
+  stage: production
+  region: ap-southeast-2
+  memorySize: 128
+functions:
+  app:
+    handler: index.emailHandler
+    events: 
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
